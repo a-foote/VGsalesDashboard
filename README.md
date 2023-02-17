@@ -18,24 +18,24 @@ The last/fourth page will have both a histogram (left-hand side) and a pie chart
 
 ### Page 1
 
-![](./)
+![Video Game Sales Dashboard, Page 1](./app_sketch/page1.png)
 
 
 ### Page 2
 
-![](./)
+![Video Game Sales Dashboard, Page 2](./app_sketch/page2.png)
 
 
 
 ### Page 3
 
-![](./)
+![Video Game Sales Dashboard, Page 3](./app_sketch/page3.png)
 
 
 
 ### Page 4
 
-![](./)
+![Video Game Sales Dashboard, Page 4](./app_sketch/page4.png)
 
 
 
