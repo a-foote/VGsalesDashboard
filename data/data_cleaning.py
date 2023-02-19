@@ -8,11 +8,6 @@ df = pd.read_csv('./vgsales.csv', parse_dates=['Year'])
 	#group platform by company, with 'other' category (PC, playstation, xbox, nintendo, sega, (atari), other)
 	#group publisher to have 'other' category (8 categories ish)
 
-#removing 2017/2020 rows
-print(len(df.index))
-df = df.drop(df[((df['Year'].dt.year == 2017) | (df['Year'].dt.year == 2020))].index, axis=0)
-print(len(df.index))
-
 
 #grouping platform
 #groups
@@ -36,6 +31,8 @@ for i, value in enumerate(df['Platform']):
         df.loc[i, 'Platform_grouped'] = 'nintendo_console'
     elif (value in nintendo_handheld):
         df.loc[i, 'Platform_grouped'] = 'nintendo_handheld'
+    elif (value == 'PC'):
+        df.loc[i, 'Platform_grouped'] = 'personal_computer'
     elif (value in sega):
         df.loc[i, 'Platform_grouped'] = 'sega'
     elif (value in atari):
@@ -76,6 +73,14 @@ for i, value in enumerate(df['Publisher']):
 print('\n\n')
 print(df['Publisher_grouped'].value_counts())
 
+
+#removing 2017/2020 rows
+print(len(df.index))
+df.drop(df[df['Year'].dt.year == 2017].index, axis=0, inplace=True)
+df.reset_index(drop=True, inplace=True)
+df.drop(df[df['Year'].dt.year == 2020].index, axis=0, inplace=True)
+df.reset_index(drop=True, inplace=True)
+print(len(df.index))
 
 
 
