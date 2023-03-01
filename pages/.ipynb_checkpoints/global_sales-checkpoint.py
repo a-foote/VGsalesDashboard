@@ -3,7 +3,6 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc
 from dash.dependencies import Input, Output
 import altair as alt
-import io
 
 from plot_functions import sales_time
 import pg_head as ph
@@ -30,8 +29,9 @@ def create_layout(app, df):
 
 #         final_plot = (plot + band).configure_mark(color='red')
         #return plot.to_html()
-    
+
     # Page layouts
+    print(df.info())
     return dbc.Container(
         [
             dbc.Row([ph.header(app)]),
@@ -54,11 +54,7 @@ def create_layout(app, df):
         Output('scatter', 'srcDoc'),
         [Input('gs-slider', 'value')]
         )
-    # def update_sales(xmax):
-    #     print(xmax)
-    #     return sales_time(df,xmax)
-    #sales_time.sales_time(vg_sales)
-    def sales_time(years,df):
+    def sales_time(years):
         print(years)
         plot = (alt.Chart(df[(df['Year'] > years[0]) & (df['Year'] < years[1])], title='Total Regional Sales').mark_circle().encode(
                         alt.X('Year',scale=alt.Scale(zero=False), title=None), 
@@ -74,6 +70,9 @@ def create_layout(app, df):
 #                )
 
         final_plot = (plot).configure_mark(color='red')
-        plt_html = io.StringIO()
-        final_plot.save(plt_html,'html')
-        return plt_html.getvalue()
+        return final_plot.to_html()
+    
+    # def update_sales(xmax):
+    #     print(xmax)
+    #     return sales_time(df,xmax)
+    #sales_time.sales_time(vg_sales)

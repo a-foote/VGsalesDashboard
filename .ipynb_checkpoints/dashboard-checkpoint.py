@@ -36,7 +36,7 @@ def display_page(pathname):
     #elif pathname == "/vg-sales/other":
     #    return otherAnalysis.create_layout(app,vg_sales)
     #else:
-        return global_sales.create_layout(app,vg_sales)
+    return global_sales.create_layout(app,vg_sales)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
