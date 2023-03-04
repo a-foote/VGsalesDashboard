@@ -1,6 +1,8 @@
 import dash
 import dash_bootstrap_components as dbc
-from dash import html, dcc
+#from dash import html, dcc
+import dash_html_components as html
+import dash_core_components as dcc
 from dash.dependencies import Input, Output
 import altair as alt
 import pandas as pd
@@ -48,7 +50,7 @@ layout = dbc.Container(
                     html.Iframe(
                         id='heatmap',
                         style={'border-width': '0', 'width': '100%', 'height': '100%'},
-                    )            
+                    )
                 ],width=9)
             ])
         ]
