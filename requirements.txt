@@ -7,5 +7,5 @@ werkzeug==2.0.1
 dash_bootstrap_components
 dash_html_components
 dash_core_components
-plotly==4.14.3
+plotly==5.13.0
 plotly_express
