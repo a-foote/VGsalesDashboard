@@ -2,7 +2,7 @@ pandas
 numpy
 gunicorn
 altair
-dash==1.18.1
+dash==2.8.1
 werkzeug==2.0.1
 dash_bootstrap_components
 dash_html_components
