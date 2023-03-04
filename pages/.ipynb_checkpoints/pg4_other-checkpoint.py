@@ -10,6 +10,8 @@ dash.register_page(__name__,name="Other Analysis")
 pg4_data = pd.read_csv("data/vgsales-cleaned.csv", parse_dates=['Year'])
 pg4_data['Year'] = pg4_data['Year'].dt.year.astype('Int64')
 
+alt.data_transformers.disable_max_rows()
+
 layout = dbc.Container(
         children=[
             dbc.Row([

@@ -109,19 +109,19 @@ layout = dbc.Container(
      Input('ngames','value')
     ]
 )
-def topgames(region, years, genre, pub, pltfrm, ngames):
+def topgames(region, years, genre, publisher, platform, ngames):
     #filter data
     df_temp = pg3_data[(pg3_data['Year'] > years[0]) & (pg3_data['Year'] < years[1])]
     if genre != 'All':
         df_temp = df_temp[df_temp['Genre'] == genre]
-    if pub != 'All':
-        df_temp = df_temp[df_temp['Publisher_grouped'] == pub]
-    if pltfrm != 'All':
-        df_temp = df_temp[df_temp['Platform_grouped'] == pltfrm]
+    if publisher != 'All':
+        df_temp = df_temp[df_temp['Publisher_grouped'] == publisher]
+    if platform != 'All':
+        df_temp = df_temp[df_temp['Platform_grouped'] == platform]
     #generate plot
     plot = (alt.Chart(df_temp[:ngames]).mark_bar().encode(
                     alt.X(region, type='quantitative', title = 'Sales (millions)', axis=alt.Axis(format='$s')),
-                    alt.Y('Name', title ='Game Name', sort='x'),
+                    alt.Y('Name', type='nominal', title ='Game Name', sort='x'),
                     tooltip=['Rank','Year','Platform','Publisher']
                 ).configure_mark(
                     color='red'

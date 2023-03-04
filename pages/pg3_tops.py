@@ -121,7 +121,7 @@ def topgames(region, years, genre, publisher, platform, ngames):
     #generate plot
     plot = (alt.Chart(df_temp[:ngames]).mark_bar().encode(
                     alt.X(region, type='quantitative', title = 'Sales (millions)', axis=alt.Axis(format='$s')),
-                    alt.Y('Name', title ='Game Name', sort='x'),
+                    alt.Y('Name', type='nominal', title ='Game Name', sort='x'),
                     tooltip=['Rank','Year','Platform','Publisher']
                 ).configure_mark(
                     color='red'
