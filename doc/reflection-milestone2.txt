@@ -1,0 +1,21 @@
+#Milestone 2 Reflection
+As it currently stands the Video Game Sales dashboard, implemented with Dash in Python and Altair, has some good features but is also limited. Thus there is room for improvements to be made, possibly in milestone 4.
+
+### Well Done Features
+There are just a few features that I would consider to be well done. First, the ability to filter on all variables and display the related top games. This can allow any gamer to see what games made by Nintendo were popular in their region in the 1980's, for example. The ability to toggle the regional sales histogram to a logarithmic scale to better see the sales trend is also a nice component. Lastly, it is neat that the user has the option to produce a heatmap for any combination of the three categorical variables: Platform, Publisher, and Genre, as well as filter on a specific date range.
+
+### Challenges
+The dashboard is not quite finished yet as there was a number of challenges that occured during development. These included:
+
+- formatting issues
+- having to learn how to have a multipage app with different pages saved as seperate py files
+
+### Improvements
+There a number of improvements that could be made to make this dashboard better:
+
+- map plot displays properly
+- ability to select a region on the map and have the sales scatterplot update accordingly
+- improved formatting and layout such as seeing which tab is active, centering the plots, moving the menu to the far left 
+- adding a confidence interval on the global sales plot
+- addig percentages into the tooltips of the pie-chart
+- resolving ID not found in layout issues
