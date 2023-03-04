@@ -7,15 +7,14 @@ There are just a few features that I would consider to be well done. First, the 
 ### Challenges
 The dashboard is not quite finished yet as there was a number of challenges that occured during development. These included:
 
-- formatting issues
+- formatting and layout issues
 - having to learn how to have a multipage app with different pages saved as seperate py files
 
 ### Improvements
 There a number of improvements that could be made to make this dashboard better:
 
-- map plot displays properly
 - ability to select a region on the map and have the sales scatterplot update accordingly
 - improved formatting and layout such as seeing which tab is active, centering the plots, moving the menu to the far left 
 - adding a confidence interval on the global sales plot
-- addig percentages into the tooltips of the pie-chart
+- adding percentages into the tooltips of the pie-chart
 - resolving ID not found in layout issues
