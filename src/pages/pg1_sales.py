@@ -20,15 +20,15 @@ layout = dbc.Container(
                 dbc.Col(children=[
                 dcc.Graph(
                         id='map',
-                        style={'border-width': '0', 'width': '50%', 'height': '50%'},
-                    )], width=8),
+                        #style={'border-width': '0', 'width': '50%', 'height': '50%'},
+                    )]),
                 dbc.Col(children=[
                     html.Iframe(
                         id='scatter',
                         style={'border-width': '0', 'width': '100%', 'height': '200%'},
                     ),
                     dcc.RangeSlider(id='gs_slider', min=1980, max=2017, value=[1980,2016], step=1, marks=None, tooltip={"placement": "bottom", "always_visible": True})
-            
+
                 ], width=4)
             ])
         ]
@@ -42,7 +42,7 @@ layout = dbc.Container(
 )
 def sales_time(years):
     plot = (alt.Chart(pg1_data[(pg1_data['Year'] > years[0]) & (pg1_data['Year'] < years[1])], title='Total Regional Sales').mark_circle().encode(
-                    alt.X('Year',scale=alt.Scale(zero=False), title=None, axis=alt.Axis(format='d')), 
+                    alt.X('Year',scale=alt.Scale(zero=False), title=None, axis=alt.Axis(format='d')),
                     alt.Y('sum(Global_Sales)', title='Sum of Sales (millions)', axis=alt.Axis(format='$s'))
                 )
            )
