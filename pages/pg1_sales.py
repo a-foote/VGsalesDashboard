@@ -16,18 +16,18 @@ pg1_data['Year'] = pg1_data['Year'].dt.year.astype('Int64')
 layout = dbc.Container(
         children=[
             dbc.Row([
-                dbc.Col(children=[html.H5("map plot will go here")]),
+                dbc.Col(children=[html.H5("map plot will go here")], width=6),
                 dbc.Col(children=[
                     html.Iframe(
                         id='scatter',
                         #srcDoc=sales_time(df,xmax=2016),
                         style={'border-width': '0', 'width': '100%', 'height': '400px'},
                     ),
-                    dcc.RangeSlider(id='gs_slider', min=1980, max=2017, value=[1980,2016], step=1, tooltip={"placement": "bottom", "always_visible": True})
+                    dcc.RangeSlider(id='gs_slider', min=1980, max=2017, value=[1980,2016], step=1, marks=None, tooltip={"placement": "bottom", "always_visible": True})
             
-                ])
+                ], width=6)
             ])
-        ], style={'border': '5px solid #828282', 'border-radius': '10px'}
+        ]
     )
 
     # Set up callbacks/backend

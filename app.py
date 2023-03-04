@@ -2,12 +2,12 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc
 
-app = dash.Dash(__name__,  external_stylesheets= [dbc.themes.UNITED], use_pages = True)
+app = dash.Dash(__name__,  external_stylesheets= [dbc.themes.UNITED], suppress_callback_exceptions=True,use_pages = True)
 
 app.layout = dbc.Container(children=[
                 dbc.Row(children=[
                     dbc.Col(children=[
-                        html.H1("Video Game Sales: A Historial Analysis", style={"background-color":"#95a5a6","color":"#e4000f","border-style": "solid","border": "25px #495152"})
+                        html.H1("Video Game Sales: A Historial Analysis", style={"background-color":"#95a5a6","color":"#e4000f",'border': '5px solid #828282','padding':0})
                     ])
                 ]),
                 dbc.Row(children=[
@@ -17,12 +17,12 @@ app.layout = dbc.Container(children=[
                                 dbc.NavItem(dbc.NavLink(page['name'], href=page['path']))
                                 for page in dash.page_registry.values()
                             ],
-                            pills=True,
+                            pills=True
                         )
                     ])
                 ]),
                 dbc.Row(children=[dash.page_container])
-            ]
+            ],fluid=True,
 )
 
 if __name__ == '__main__':
