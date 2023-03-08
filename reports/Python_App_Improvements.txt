@@ -1,0 +1,25 @@
+- global sales: 
+	- resize the plot area, move scatter below map
+	- implement the feature that changes the scatter based on map clicks
+
+- distributions
+	- snap menu to the left
+	- update header easthetics
+	- remove or correct title
+	- update categories to grouped values
+	- increase plot size
+
+- top games
+	- snap menu to the left
+	- update header easthetics
+	- remove y title
+	- increase plot size
+
+- other analysis
+	- get rid of border on pie chart ()
+	- add percentage to pie chart
+	- increase plot size 
+	- move log check closer to plot
+
+- add off white background
+- update tabs so that active is identified
