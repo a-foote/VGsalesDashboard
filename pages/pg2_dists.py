@@ -28,7 +28,7 @@ layout = dbc.Container(
                             dbc.Label("Select X Axis:",style={'font-size':14}),
                             dcc.Dropdown(
                                 id='xcol', value='Platform',
-            options=[{'label': i, 'value': i} for i in ['Genre','Platform','Publisher']]),
+            options=[{'label': i, 'value': i} for i in ['Genre','Platform','Publisher']]), #{'label': i, 'value': i} for i in ['Genre','Platform','Publisher']]
                             html.Br(),
                             html.Br(),
                             html.Br(),
@@ -65,13 +65,18 @@ layout = dbc.Container(
     ]
 )
 def heatmap(years,xcol,ycol):
-    plot = (alt.Chart(pg2_data[(pg2_data['Year'] > years[0]) & (pg2_data['Year'] < years[1])],title="Categorical Distirbutions").mark_rect().encode(
+    plot = (alt.Chart(pg2_data[(pg2_data['Year'] > years[0]) & (pg2_data['Year'] < years[1])],title="").mark_rect().encode(
                     alt.X(xcol, title = xcol, axis=alt.Axis(labelAngle=-45)),
                     alt.Y(ycol, title = ycol),
                     color = alt.Color('count()',title ='Games Count', scale=alt.Scale(scheme='lightgreyred')),
                     tooltip=['count()']
+                ).properties(
+                    width=650,
+                    height=650
+                ).configure_axis(
+                    labelFontSize=15,
+                    titleFontSize=15
                 )
-            .properties(width=500, height=500)
            )
     return plot.to_html()
 

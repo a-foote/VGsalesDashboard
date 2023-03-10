@@ -26,6 +26,7 @@ app.layout = dbc.Container(children=[
                 ]),
                 dbc.Row(children=[dash.page_container])
             ],fluid=True,
+            style={'height': '100vh', 'background-image': 'url(/assets/background.jpg)','background-size': '100%', 'position': 'fixed',}
 )
 
 if __name__ == '__main__':

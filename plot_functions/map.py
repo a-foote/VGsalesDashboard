@@ -31,7 +31,7 @@ for count, value in enumerate(codes['COUNTRY']):
 
 #figure
 def map_figure():
-	return px.choropleth(codes, locations="CODE", color="sales", hover_name="names", color_continuous_scale=px.colors.sequential.Plasma)
+	return px.choropleth(codes, locations="CODE", color="sales", hover_name="names", color_continuous_scale=px.colors.sequential.Plasma, width=1000, height=450)
 
-	
+
 #map_figure()

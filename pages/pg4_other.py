@@ -6,6 +6,7 @@ import dash_core_components as dcc
 from dash.dependencies import Input, Output
 import altair as alt
 import pandas as pd
+import numpy as np
 
 dash.register_page(__name__,name="Other Analysis")
 
@@ -68,7 +69,10 @@ def sales_hist(region, logcheck):
                     alt.Y('count()', scale=alt.Scale(type="log" if len(logcheck) != 0 else "linear"), title = 'Number of Games'),
                     tooltip=['count()']
                 )
-            .configure_mark(color='red')
+            .configure_mark(color='red').properties(
+        		width=500,
+        		height=420
+        	)
            )
     return plot.to_html()
 @dash.callback(
@@ -76,17 +80,39 @@ def sales_hist(region, logcheck):
     [Input('category', 'value')]
 )
 def piechart(category):
-    plot = (alt.Chart(pg4_data).mark_arc().encode(
-                    theta=alt.Theta(
-                        field=category,
-                        aggregate='count'
-                    ),
-                    color=alt.Color(
-                        field=category
-                    ),
-                    tooltip = [category,'count(category):Q']
-                )
-           )
+    # plot = (alt.Chart(pg4_data).mark_arc().encode(
+    #                 theta=alt.Theta(
+    #                     field=category,
+    #                     aggregate='count'
+    #                 ),
+    #                 color=alt.Color(
+    #                     field=category
+    #                 ),
+    #                 tooltip = [category,'count(category):Q']
+    #             ).configure_view(
+    #         		strokeWidth=0,
+    #         		strokeOpacity=0
+    #         	).properties(
+    #         		width=450,
+    #         		height=450
+    #         	)
+    #        )
+    breakdown = pg4_data.groupby(category)['Name'].count().reset_index()
+    breakdown.rename(columns = {'Name': 'count'}, inplace=True)
+    breakdown['percentage'] = [str(np.round(i*100/np.sum(breakdown['count']))) + '%' for i in breakdown['count']]
+
+    plot = (alt.Chart(breakdown).mark_arc().encode(
+        theta=alt.Theta(field=category),
+        color=alt.Color(field=category),
+        tooltip=[category, 'count', 'percentage']
+    ).configure_view(
+             		strokeWidth=0,
+             		strokeOpacity=0
+             	).properties(
+             		width=450,
+             		height=450
+             	))
+
     return plot.to_html()
 
 

@@ -91,9 +91,9 @@ layout = dbc.Container(
                 dbc.Col(children=[
                     html.Iframe(
                         id='topgames',
-                        style={'border-width': '0', 'width': '100%', 'height': '75%'},
+                        style={'border-width': '0', 'width': '100%', 'height': '80%'},
                     ),
-                    dcc.Slider(id='ngames', min=1, max=20, value=5, step=1, marks={'1':'1','20':'20'}, tooltip={"placement": "bottom", "always_visible": True}),
+                    dcc.Slider(id='ngames', min=1, max=20, value=10, step=1, marks={'1':'1','20':'20'}, tooltip={"placement": "bottom", "always_visible": True}),
                     dbc.Label("Number of Top Games",style={'font-size':14})
                 ],width=9)
             ])
@@ -123,10 +123,13 @@ def topgames(region, years, genre, publisher, platform, ngames):
     #generate plot
     plot = (alt.Chart(df_temp[:ngames]).mark_bar().encode(
                     alt.X(region, type='quantitative', title = 'Sales (millions)', axis=alt.Axis(format='$s')),
-                    alt.Y('Name', type='nominal', title ='Game Name', sort='x'),
+                    alt.Y('Name', type='nominal', title ='', sort='-x'),
                     tooltip=['Rank','Year','Platform','Publisher']
                 ).configure_mark(
                     color='red'
+                ).properties(
+                    width=600,
+                    height=600
                 )
            )
     return plot.to_html()
