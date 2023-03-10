@@ -46,13 +46,13 @@ layout = dbc.Container(
     [Input('gs_slider', 'value')]
 )
 def sales_time(years):
-    plot = (alt.Chart(pg1_data[(pg1_data['Year'] > years[0]) & (pg1_data['Year'] < years[1])], title='Total Regional Sales').mark_circle().encode(
+    plot = (alt.Chart(pg1_data[(pg1_data['Year'] > years[0]) & (pg1_data['Year'] < years[1])], title='Total Regional Sales').mark_line().encode(
                     alt.X('Year',scale=alt.Scale(zero=False), title=None, axis=alt.Axis(format='d')),
                     alt.Y('sum(Global_Sales)', title='Sum of Sales (millions)', axis=alt.Axis(format='$s'))
                 ).properties(
                     width=800,
                     height=250
-                )
+                )#.mark_errorband(extent='ci')
            )
 
 #         band = (alt.Chart(df).mark_errorband(extent='ci').encode(
