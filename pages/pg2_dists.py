@@ -19,39 +19,44 @@ layout = dbc.Container(
             dbc.Row([
                 dbc.Col(children=[
                     dbc.Card([
-                        dbc.Form([
-                            dbc.Label("Menu",style={"background-color":"#7e8b8c","color":"#e4000f",'font-size':20}),
-                            html.Br(),
-                            html.Br(),
-                            html.Br(),
-                            html.Br(),
-                            dbc.Label("Select X Axis:",style={'font-size':14}),
-                            dcc.Dropdown(
-                                id='xcol', value='Platform',
-            options=[{'label': i, 'value': i} for i in ['Genre','Platform','Publisher']]), #{'label': i, 'value': i} for i in ['Genre','Platform','Publisher']]
-                            html.Br(),
-                            html.Br(),
-                            html.Br(),
-                            html.Br(),
-                            dbc.Label("Select Y Axis:",style={'font-size':14}),
-                            dcc.Dropdown(
-                                id='ycol', value='Genre',
-            options=[{'label': i, 'value': i} for i in ['Genre','Platform','Publisher']]),
-                            html.Br(),
-                            html.Br(),
-                            html.Br(),
-                            html.Br(),
-                            dbc.Label("Select Time Rage:",style={'font-size':14}),
-                            dcc.RangeSlider(id='dist_slider', min=1980, max=2016, value=[1980,2016], step=1, marks=None, tooltip={"placement": "bottom", "always_visible": True})
+                        dbc.CardHeader("Menu",style={"background-color":"#7e8b8c","color":"black",'font-size':30, 'text-align':'center'}),
+                        dbc.CardBody([
+                            dbc.Form([
+                                html.Br(),
+                                html.Br(),
+                                dbc.Label("Select X Axis:",style={'font-size':16}),
+                                dcc.Dropdown(
+                                    id='xcol', placeholder = 'Platform', value='Platform_grouped',
+                                    options=[{'label' : "Genre", 'value' : "Genre"},
+                                              {'label' : "Platform", 'value' : "Platform_grouped"},
+                                              {'label' : "Publisher", 'value' : "Publisher_grouped"}]
+                                ),
+                                html.Br(),
+                                html.Br(),
+                                html.Br(),
+                                html.Br(),
+                                dbc.Label("Select Y Axis:",style={'font-size':16}),
+                                dcc.Dropdown(
+                                    id='ycol', value='Genre',
+                                    options=[{'label' : "Genre", 'value' : "Genre"},
+                                              {'label' : "Platform", 'value' : "Platform_grouped"},
+                                              {'label' : "Publisher", 'value' : "Publisher_grouped"}]),
+                                html.Br(),
+                                html.Br(),
+                                html.Br(),
+                                html.Br(),
+                                dbc.Label("Select Time Rage:",style={'font-size':16}),
+                                dcc.RangeSlider(id='dist_slider', min=1980, max=2016, value=[1980,2016], step=1, marks=None, tooltip={"placement": "bottom", "always_visible": True})
+                            ])
                         ])
                     ], color="#95a5a6",style={"height": "55rem"},)
                   ],width=2),
                 dbc.Col(children=[
                     html.Iframe(
                         id='heatmap',
-                        style={'border-width': '0', 'width': '100%', 'height': '100%'},
+                        style={'border-width': '0', 'width': '200%', 'height': '200%'},
                     )
-                ],width=9)
+                ],width=10)
             ])
         ]
     )
@@ -65,9 +70,21 @@ layout = dbc.Container(
     ]
 )
 def heatmap(years,xcol,ycol):
+    if xcol == 'Platform_grouped':
+        xtitle = 'Platform'
+    elif xcol == 'Publisher_grouped':
+        xtitle = 'Publisher'
+    else:
+        xtitle = xcol
+    if ycol == 'Platform_grouped':
+        ytitle = 'Platform'
+    elif ycol == 'Publisher_grouped':
+        ytitle = 'Publisher'
+    else:
+        ytitle = ycol
     plot = (alt.Chart(pg2_data[(pg2_data['Year'] > years[0]) & (pg2_data['Year'] < years[1])],title="").mark_rect().encode(
-                    alt.X(xcol, title = xcol, axis=alt.Axis(labelAngle=-45)),
-                    alt.Y(ycol, title = ycol),
+                    alt.X(xcol, title = xtitle, axis=alt.Axis(labelAngle=-45)),
+                    alt.Y(ycol, title = ytitle),
                     color = alt.Color('count()',title ='Games Count', scale=alt.Scale(scheme='lightgreyred')),
                     tooltip=['count()']
                 ).properties(

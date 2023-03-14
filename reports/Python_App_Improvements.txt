@@ -25,4 +25,4 @@
 	- move log check closer to plot (done)
 
 - add off white background (talk about this... will need to change all chart backgrounds & text colors to match)
-- update tabs so that active is identified [tried :( ]
+- update tabs so that active is identified (done)
