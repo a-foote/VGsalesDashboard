@@ -57,15 +57,15 @@ layout = dbc.Container(
                                     id='publisher', value='All',
                                     options=[{'label' : "All", 'value' : "All"},
                                               {'label' : "Activision", 'value' : "Activision"},
-                                              {'label' : "Electronic", 'value' : "Electronic"},
-                                              {'label' : "Konami", 'value' : "Konami"},
-                                              {'label' : "Namco", 'value' : "Namco"},
+                                              {'label' : "Electronic", 'value' : "Electronic Arts"},
+                                              {'label' : "Konami", 'value' : "Konami Digital Entertainment"},
+                                              {'label' : "Namco", 'value' : "Namco Bandai Games"},
                                               {'label' : "Nintendo", 'value' : "Nintendo"},
                                               {'label' : "Sega", 'value' : "Sega"},
-                                              {'label' : "Sony", 'value' : "Sony"},
+                                              {'label' : "Sony", 'value' : "Sony Computer Entertainment"},
                                               {'label' : "THQ", 'value' : "THQ"},
                                               {'label' : "Ubisoft", 'value' : "Ubisoft"},
-                                              {'label' : "Other", 'value' : "Other"}]
+                                              {'label' : "Other", 'value' : "other"}]
                                 ),
                                 html.Br(),
                                 html.Br(),
@@ -73,14 +73,14 @@ layout = dbc.Container(
                                 dcc.Dropdown(
                                     id='platform', value='All',
                                     options=[{'label' : "All", 'value' : "All"},
-                                              {'label' : "Atari", 'value' : "Atari"},
-                                              {'label' : "Personal Computer", 'value' : "Computer"},
-                                              {'label' : "Nintendo Console", 'value' : "Nintendo(console)"},
-                                              {'label' : "Nintendo Handheld", 'value' : "Nintendo(handheld)"},
-                                              {'label' : "PlayStation", 'value' : "PlayStation"},
-                                              {'label' : "Sega", 'value' : "Sega"},
-                                              {'label' : "Xbox", 'value' : "Xbox"},
-                                              {'label' : "Other", 'value' : "Other"}]
+                                              {'label' : "Atari", 'value' : "atari"},
+                                              {'label' : "Personal Computer", 'value' : "personal_computer"},
+                                              {'label' : "Nintendo Console", 'value' : "nintendo_console"},
+                                              {'label' : "Nintendo Handheld", 'value' : "nintendo_handheld"},
+                                              {'label' : "PlayStation", 'value' : "playstation"},
+                                              {'label' : "Sega", 'value' : "sega"},
+                                              {'label' : "Xbox", 'value' : "xbox"},
+                                              {'label' : "Other", 'value' : "other"}]
                                 ),
                             html.Br(),
                             html.Br(),
@@ -126,12 +126,13 @@ def topgames(region, years, genre, publisher, platform, ngames):
     plot = (alt.Chart(df_temp[:ngames]).mark_bar().encode(
                     alt.X(region, type='quantitative', title = 'Sales (millions)', axis=alt.Axis(format='$s')),
                     alt.Y('Name', type='nominal', title ='', sort='-x'),
-                    tooltip=['Rank','Year','Platform','Publisher']
+                    tooltip=['Rank','Year','Platform_grouped','Publisher_grouped']
                 ).configure_mark(
                     color='red'
                 ).properties(
                     width=550,
-                    height=550
+                    height=550,
+                    background='#ffffff00'
                 )
            )
     return plot.to_html()

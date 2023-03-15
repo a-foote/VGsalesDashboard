@@ -1,45 +1,151 @@
-\documentclass{beamer}
-\usetheme{Boadilla}
-\graphicspath{{C:/Users/jonah/Documents/SCHOOL/}} %Sets the working directory for images.
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usetheme[]{Boadilla}
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\newif\ifbibliography
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\definecolor{ubcBlue}{RGB}{12,35,68}
+\definecolor{ubcBlue1}{RGB}{0,85,183}
+\definecolor{ubcBlue2}{RGB}{0,167,225}
+\definecolor{ubcBlue3}{RGB}{64,180,229}
+\definecolor{ubcBlue4}{RGB}{110,196,232}
+\definecolor{ubcBlue5}{RGB}{151,212,223}
+\setbeamercolor{alerted text}{bg=ubcBlue1, fg = ubcBlue}
+\setbeamercolor{example text}{fg=ubcBlue1, bg=ubcBlue1}
+\setbeamercolor{title separator}{fg = ubcBlue, bg=ubcBlue}
+\setbeamercolor{progress bar}{bg=ubcBlue4, fg=ubcBlue1}
+\setbeamercolor{progress bar in head/foot}{bg=ubcBlue4, fg=ubcBlue1}
+\setbeamercolor{progress bar in section page}{bg=ubcBlue4, fg=ubcBlue1}
+\setbeamercolor{frametitle}{bg=white}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Video Games: A Historical Analysis},
+  pdfauthor={Jonah Edmundson \& Alyssa Foote},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
-\newcommand{\comment}[1]{}
-
-\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
-
-
-\title{Video Games: A Historical Analysis}
+\title{Video Games:\\
+A Historical Analysis}
 \subtitle{DATA551}
 \author{Jonah Edmundson \& Alyssa Foote}
-\institute{UBCO}
-\date{March 2023}
+\date{2023-03-15}
 
 \begin{document}
+\frame{\titlepage}
 
-\begin{frame}
-\titlepage
+\begin{frame}{Motivation}
+\protect\hypertarget{motivation}{}
+\begin{itemize}
+\tightlist
+\item
+  text
+\end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Dataset}
+\protect\hypertarget{dataset}{}
+\footnotesize
 
-\section{section}
+\begin{verbatim}
+## [1] "Number of rows: 16594"
+\end{verbatim}
 
-
-\begin{frame}
-\frametitle{title}
-\centering
-%\includegraphics[scale=1.0]{FILE.png}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{title}
-\centering
-%\includegraphics[scale=0.7]{FILE.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{title}
-\centering
-%\includegraphics[scale=0.7]{FILE.png}
+\begin{verbatim}
+##   Rank                     Name Year        Genre NA_Sales EU_Sales
+## 1    1               Wii Sports 2006       Sports    41.49    29.02
+## 2    2        Super Mario Bros. 1985     Platform    29.08     3.58
+## 3    3           Mario Kart Wii 2008       Racing    15.85    12.88
+## 4    4        Wii Sports Resort 2009       Sports    15.75    11.01
+## 5    5 Pokemon Red/Pokemon Blue 1996 Role-Playing    11.27     8.89
+## 6    6                   Tetris 1989       Puzzle    23.20     2.26
+##   JP_Sales Other_Sales Global_Sales  Platform_grouped
+## 1     3.77        8.46        82.74  nintendo_console
+## 2     6.81        0.77        40.24  nintendo_console
+## 3     3.79        3.31        35.82  nintendo_console
+## 4     3.28        2.96        33.00  nintendo_console
+## 5    10.22        1.00        31.37 nintendo_handheld
+## 6     4.22        0.58        30.26 nintendo_handheld
+\end{verbatim}
 \end{frame}
 
 \end{document}

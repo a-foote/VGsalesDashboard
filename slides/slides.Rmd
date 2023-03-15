@@ -1,0 +1,71 @@
+---
+title: "Video Games:  \n A Historical Analysis"
+subtitle: "DATA551"
+author: "Jonah Edmundson & Alyssa Foote"
+date: "`r Sys.Date()`"
+output:
+  beamer_presentation:
+    keep_tex: true
+    incremental: false
+    slide_level: 1
+    theme: Boadilla
+    #citation_package: natbib
+#biblio-style: "apalike"
+#link-citations: yes
+fontsize: 11pt
+header-includes:
+  #- \widowpenalties 1 150
+  - \definecolor{ubcBlue}{RGB}{12,35,68}
+  - \definecolor{ubcBlue1}{RGB}{0,85,183}
+  - \definecolor{ubcBlue2}{RGB}{0,167,225}
+  - \definecolor{ubcBlue3}{RGB}{64,180,229}
+  - \definecolor{ubcBlue4}{RGB}{110,196,232}
+  - \definecolor{ubcBlue5}{RGB}{151,212,223}
+  - \setbeamercolor{alerted text}{bg=ubcBlue1, fg = ubcBlue}
+  - \setbeamercolor{example text}{fg=ubcBlue1, bg=ubcBlue1}
+  - \setbeamercolor{title separator}{fg = ubcBlue, bg=ubcBlue}
+  - \setbeamercolor{progress bar}{bg=ubcBlue4, fg=ubcBlue1}
+  - \setbeamercolor{progress bar in head/foot}{bg=ubcBlue4, fg=ubcBlue1}
+  - \setbeamercolor{progress bar in section page}{bg=ubcBlue4, fg=ubcBlue1}
+  - \setbeamercolor{frametitle}{bg=white}
+  #- \usepackage{appendixnumberbeamer}
+  #- \usepackage{booktabs}
+  #- \usepackage[scale=2]{ccicons}
+  #- \usepackage{pgfplots}
+  #- \usepgfplotslibrary{dateplot}
+  #- \usepackage{xspace}
+  #- \newcommand{\themename}{\textbf{\textsc{boadilla}}\xspace}
+  #- \usepackage{multicol}
+  #- \titlegraphic{\includegraphics[width = 3cm]{logo.jpeg}}
+---
+
+```{r global_options, include=FALSE, cache=FALSE}
+## Set some options for knitr to apply globally
+knitr::opts_chunk$set(cache=TRUE,
+                      echo=FALSE,
+                      autodep=TRUE,
+                      message=FALSE,
+                      warning=FALSE,
+                      #dev='tikz',
+                      out.width="90%",
+                      fig.asp=0.75,
+                      fig.align='center')
+knitr::opts_knit$set(kable.force.latex = TRUE)
+```
+
+# Motivation
+
+* text
+
+
+# Dataset
+
+\footnotesize
+```{r, R.options = list(width = 70), class.source = "small"}
+library(lubridate)
+data = read.csv('../data/vgsales-cleaned.csv')
+data[,"Year"] = year(as.Date(data[,'Year'], format = '%Y-%m-%d'))
+print(paste('Number of rows:', nrow(data)))
+head(data[,c(2, 3, 5, 6, 8:13)])
+```
+
