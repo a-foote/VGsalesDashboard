@@ -10,11 +10,12 @@ import numpy as np
 
 dash.register_page(__name__,name="Other Analysis")
 
-pg4_data = pd.read_csv("data/vgsales-cleaned.csv", parse_dates=['Year'])
-pg4_data['Year'] = pg4_data['Year'].dt.year.astype('Int64')
+pg4_data = pd.read_csv("data/vgsales-cleaned.csv", parse_dates=['Year']) #read in data
+pg4_data['Year'] = pg4_data['Year'].dt.year.astype('Int64') #format year column properly
 
 alt.data_transformers.disable_max_rows()
 
+#define layout
 layout = dbc.Container(
         children=[
             dbc.Row([
@@ -56,7 +57,8 @@ layout = dbc.Container(
         ]
     )
 
-    # Set up callbacks/backend
+
+# Set up callbacks/backend
 @dash.callback(
     Output('hist_sales', 'srcDoc'),
     [Input('region', 'value'),
@@ -64,6 +66,16 @@ layout = dbc.Container(
     ]
 )
 def sales_hist(region, logcheck):
+    """
+    Creates the sales histogram plot.
+
+            Parameters:
+                    region (string): the region, as a string, used to filter data
+                    logcheck (boolean): a boolean value, decides whether or not to log the y-axis
+
+            Returns:
+                    plot (altair plot): An HTML formatted Altair histogram plot
+    """
     plot = (alt.Chart(pg4_data).mark_bar().encode(
                     alt.X(region, bin=alt.Bin(extent=[0, 3], step=0.2), title = 'Sales (millions)', axis=alt.Axis(format='$s')),
                     alt.Y('count()', scale=alt.Scale(type="log" if len(logcheck) != 0 else "linear"), title = 'Number of Games'),
@@ -73,7 +85,7 @@ def sales_hist(region, logcheck):
         		width=500,
         		height=400
         	)
-            .properties(background='#ffffff00')
+            .properties(background='#ffffff00') #clear background
            )
     return plot.to_html()
 @dash.callback(
@@ -81,6 +93,15 @@ def sales_hist(region, logcheck):
     [Input('category', 'value')]
 )
 def piechart(category):
+    """
+    Creates the categorical pie plot.
+
+            Parameters:
+                    category (string): the category, as a string, that you want to see the breakdown of
+
+            Returns:
+                    plot (altair plot): An HTML formatted Altair pie plot
+    """
     # plot = (alt.Chart(pg4_data).mark_arc().encode(
     #                 theta=alt.Theta(
     #                     field=category,
@@ -98,9 +119,9 @@ def piechart(category):
     #         		height=450
     #         	)
     #        )
-    breakdown = pg4_data.groupby(category)['Name'].count().reset_index()
-    breakdown.rename(columns = {'Name': 'count'}, inplace=True)
-    breakdown['percentage'] = [str(np.round(i*100/np.sum(breakdown['count']))) + '%' for i in breakdown['count']]
+    breakdown = pg4_data.groupby(category)['Name'].count().reset_index() #filter data
+    breakdown.rename(columns = {'Name': 'count'}, inplace=True) #rename columns
+    breakdown['percentage'] = [str(np.round(i*100/np.sum(breakdown['count']))) + '%' for i in breakdown['count']] #create percentage score
 
     plot = (alt.Chart(breakdown).mark_arc().encode(
         theta=alt.Theta(field=category),
@@ -112,7 +133,7 @@ def piechart(category):
              	).properties(
              		width=450,
              		height=450,
-                    background='#ffffff00'
+                    background='#ffffff00' #clear background
              	))
 
     return plot.to_html()
