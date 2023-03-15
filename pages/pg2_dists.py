@@ -9,11 +9,12 @@ import pandas as pd
 
 dash.register_page(__name__,name="Distributions")
 
-pg2_data = pd.read_csv("data/vgsales-cleaned.csv", parse_dates=['Year'])
-pg2_data['Year'] = pg2_data['Year'].dt.year.astype('Int64')
+pg2_data = pd.read_csv("data/vgsales-cleaned.csv", parse_dates=['Year']) #reading in data
+pg2_data['Year'] = pg2_data['Year'].dt.year.astype('Int64') #parse dates/years properly
 
 alt.data_transformers.disable_max_rows()
 
+#define layout
 layout = dbc.Container(
         children=[
             dbc.Row([
@@ -52,7 +53,7 @@ layout = dbc.Container(
                     ], color="#95a5a6",style={"height": "55rem"},)
                   ],width=2),
                 dbc.Col(children=[
-                    html.Iframe(
+                    html.Iframe( #heatmap plot goes here
                         id='heatmap',
                         style={'border-width': '0', 'width': '200%', 'height': '200%'},
                     )
@@ -61,7 +62,7 @@ layout = dbc.Container(
         ]
     )
 
-    # Set up callbacks/backend
+# Set up callbacks/backend
 @dash.callback(
     Output('heatmap', 'srcDoc'),
     [Input('dist_slider', 'value'),
@@ -70,6 +71,19 @@ layout = dbc.Container(
     ]
 )
 def heatmap(years,xcol,ycol):
+    """
+    Creates the categorical heatmap plot.
+
+            Parameters:
+                    years (array of int): an array of two integers, used to filter data
+                    xcol (string): the categorical variable, as a string, used to create the heatmap
+                    ycol (string): the categorical variable, as a string, used to create the heatmap
+
+            Returns:
+                    plot (altair plot): An HTML formatted Altair heatmap plot
+    """
+
+    #switch titles based on category selected (to get rid of '_grouped')
     if xcol == 'Platform_grouped':
         xtitle = 'Platform'
     elif xcol == 'Publisher_grouped':
@@ -82,7 +96,8 @@ def heatmap(years,xcol,ycol):
         ytitle = 'Publisher'
     else:
         ytitle = ycol
-    plot = (alt.Chart(pg2_data[(pg2_data['Year'] > years[0]) & (pg2_data['Year'] < years[1]) & (pg2_data['Publisher_grouped'] != 'other')],title="").mark_rect().encode(
+    #define plot
+    plot = (alt.Chart(pg2_data[(pg2_data['Year'] > years[0]) & (pg2_data['Year'] < years[1]) & (pg2_data['Publisher_grouped'] != 'other')],title="").mark_rect().encode( #filter data
                     alt.X(xcol, title = xtitle, axis=alt.Axis(labelAngle=-45)),
                     alt.Y(ycol, title = ytitle),
                     color = alt.Color('count()',title ='Games Count', scale=alt.Scale(scheme='lightgreyred')),
@@ -90,7 +105,7 @@ def heatmap(years,xcol,ycol):
                 ).properties(
                     width=650,
                     height=650,
-                    background='#ffffff00'
+                    background='#ffffff00' #clear background
                 ).configure_axis(
                     labelFontSize=15,
                     titleFontSize=15

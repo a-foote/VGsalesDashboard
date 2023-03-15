@@ -74,7 +74,7 @@ def sales_hist(region, logcheck):
                     logcheck (boolean): a boolean value, decides whether or not to log the y-axis
 
             Returns:
-                    plot (altair plot): An HTML formatted Altair barplot
+                    plot (altair plot): An HTML formatted Altair histogram plot
     """
     plot = (alt.Chart(pg4_data).mark_bar().encode(
                     alt.X(region, bin=alt.Bin(extent=[0, 3], step=0.2), title = 'Sales (millions)', axis=alt.Axis(format='$s')),
@@ -100,7 +100,7 @@ def piechart(category):
                     category (string): the category, as a string, that you want to see the breakdown of
 
             Returns:
-                    plot (altair plot): An HTML formatted Altair barplot
+                    plot (altair plot): An HTML formatted Altair pie plot
     """
     # plot = (alt.Chart(pg4_data).mark_arc().encode(
     #                 theta=alt.Theta(
