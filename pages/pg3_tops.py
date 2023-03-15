@@ -17,85 +17,87 @@ layout = dbc.Container(
             dbc.Row([
                 dbc.Col(children=[
                     dbc.Card([
-                        dbc.Form([
-                            dbc.Label("Filters:",style={"background-color":"#7e8b8c","color":"#e4000f",'font-size':20}),
+                        dbc.CardHeader("Menu",style={"background-color":"#7e8b8c","color":"black",'font-size':30, 'text-align':'center'}),
+                        dbc.CardBody([
+                            dbc.Form([
+                                html.Br(),
+                                html.Br(),
+                                dbc.Label("Region:",style={'font-size':16}),
+                                dcc.Dropdown(
+                                    id='region', value='Global_Sales',
+                                    options=[{'label' : "Global", 'value' : "Global_Sales"},
+                                              {'label' : "North America", 'value' : "NA_Sales"},
+                                              {'label' : "European Union", 'value' : "EU_Sales"},
+                                              {'label' : "Japan", 'value' : "JP_Sales"},
+                                              {'label' : "Other", 'value' : "Other_Sales"}]
+                                ),
+                                html.Br(),
+                                html.Br(),
+                                dbc.Label("Genre:",style={'font-size':16}),
+                                dcc.Dropdown(
+                                    id='genre', value='All',
+                                    options=[{'label' : "All", 'value' : "All"},
+                                              {'label' : "Action", 'value' : "Action"},
+                                              {'label' : "Adventure", 'value' : "Adventure"},
+                                              {'label' : "Fighting", 'value' : "Fighting"},
+                                              {'label' : "Platform", 'value' : "Platform"},
+                                              {'label' : "Puzzle", 'value' : "Puzzle"},
+                                              {'label' : "Racing", 'value' : "Racing"},
+                                              {'label' : "Role-Playing", 'value' : "Role-Playing"},
+                                              {'label' : "Shooter", 'value' : "Shooter"},
+                                              {'label' : "Simulation", 'value' : "Simulation"},
+                                              {'label' : "Sports", 'value' : "Sports"},
+                                              {'label' : "Strategy", 'value' : "Strategy"},
+                                              {'label' : "Misc", 'value' : "Misc"}]
+                                ),
+                                html.Br(),
+                                html.Br(),
+                                dbc.Label("Publisher:",style={'font-size':16}),
+                                dcc.Dropdown(
+                                    id='publisher', value='All',
+                                    options=[{'label' : "All", 'value' : "All"},
+                                              {'label' : "Activision", 'value' : "Activision"},
+                                              {'label' : "Electronic", 'value' : "Electronic"},
+                                              {'label' : "Konami", 'value' : "Konami"},
+                                              {'label' : "Namco", 'value' : "Namco"},
+                                              {'label' : "Nintendo", 'value' : "Nintendo"},
+                                              {'label' : "Sega", 'value' : "Sega"},
+                                              {'label' : "Sony", 'value' : "Sony"},
+                                              {'label' : "THQ", 'value' : "THQ"},
+                                              {'label' : "Ubisoft", 'value' : "Ubisoft"},
+                                              {'label' : "Other", 'value' : "Other"}]
+                                ),
+                                html.Br(),
+                                html.Br(),
+                                dbc.Label("Platform:",style={'font-size':16}),
+                                dcc.Dropdown(
+                                    id='platform', value='All',
+                                    options=[{'label' : "All", 'value' : "All"},
+                                              {'label' : "Atari", 'value' : "Atari"},
+                                              {'label' : "Personal Computer", 'value' : "Computer"},
+                                              {'label' : "Nintendo Console", 'value' : "Nintendo(console)"},
+                                              {'label' : "Nintendo Handheld", 'value' : "Nintendo(handheld)"},
+                                              {'label' : "PlayStation", 'value' : "PlayStation"},
+                                              {'label' : "Sega", 'value' : "Sega"},
+                                              {'label' : "Xbox", 'value' : "Xbox"},
+                                              {'label' : "Other", 'value' : "Other"}]
+                                ),
                             html.Br(),
                             html.Br(),
-                            dbc.Label("Region:",style={'font-size':14}),
-                            dcc.Dropdown(
-                                id='region', value='Global_Sales',
-                                options=[{'label' : "Global", 'value' : "Global_Sales"},
-                                          {'label' : "North America", 'value' : "NA_Sales"},
-                                          {'label' : "European Union", 'value' : "EU_Sales"},
-                                          {'label' : "Japan", 'value' : "JP_Sales"},
-                                          {'label' : "Other", 'value' : "Other_Sales"}]
-                            ),
-                            html.Br(),
-                            html.Br(),
-                            dbc.Label("Genre:",style={'font-size':14}),
-                            dcc.Dropdown(
-                                id='genre', value='All',
-                                options=[{'label' : "All", 'value' : "All"},
-                                          {'label' : "Action", 'value' : "Action"},
-                                          {'label' : "Adventure", 'value' : "Adventure"},
-                                          {'label' : "Fighting", 'value' : "Fighting"},
-                                          {'label' : "Platform", 'value' : "Platform"},
-                                          {'label' : "Puzzle", 'value' : "Puzzle"},
-                                          {'label' : "Racing", 'value' : "Racing"},
-                                          {'label' : "Role-Playing", 'value' : "Role-Playing"},
-                                          {'label' : "Shooter", 'value' : "Shooter"},
-                                          {'label' : "Simulation", 'value' : "Simulation"},
-                                          {'label' : "Sports", 'value' : "Sports"},
-                                          {'label' : "Strategy", 'value' : "Strategy"},
-                                          {'label' : "Misc", 'value' : "Misc"}]
-                            ),
-                            html.Br(),
-                            html.Br(),
-                            dbc.Label("Publisher:",style={'font-size':14}),
-                            dcc.Dropdown(
-                                id='publisher', value='All',
-                                options=[{'label' : "All", 'value' : "All"},
-                                          {'label' : "Activision", 'value' : "Activision"},
-                                          {'label' : "Electronic", 'value' : "Electronic"},
-                                          {'label' : "Konami", 'value' : "Konami"},
-                                          {'label' : "Namco", 'value' : "Namco"},
-                                          {'label' : "Nintendo", 'value' : "Nintendo"},
-                                          {'label' : "Sega", 'value' : "Sega"},
-                                          {'label' : "Sony", 'value' : "Sony"},
-                                          {'label' : "THQ", 'value' : "THQ"},
-                                          {'label' : "Ubisoft", 'value' : "Ubisoft"},
-                                          {'label' : "Other", 'value' : "Other"}]
-                            ),
-                            html.Br(),
-                            html.Br(),
-                            dbc.Label("Platform:",style={'font-size':14}),
-                            dcc.Dropdown(
-                                id='platform', value='All',
-                                options=[{'label' : "All", 'value' : "All"},
-                                          {'label' : "Atari", 'value' : "Atari"},
-                                          {'label' : "Personal Computer", 'value' : "Computer"},
-                                          {'label' : "Nintendo Console", 'value' : "Nintendo(console)"},
-                                          {'label' : "Nintendo Handheld", 'value' : "Nintendo(handheld)"},
-                                          {'label' : "PlayStation", 'value' : "PlayStation"},
-                                          {'label' : "Sega", 'value' : "Sega"},
-                                          {'label' : "Xbox", 'value' : "Xbox"},
-                                          {'label' : "Other", 'value' : "Other"}]
-                            ),
-                            html.Br(),
-                            html.Br(),
-                            dbc.Label("Years:",style={'font-size':14}),
+                            dbc.Label("Years:",style={'font-size':16}),
                            dcc.RangeSlider(id='years', min=1980, max=2017, value=[1980,2016], step=1, marks=None, tooltip={"placement": "bottom", "always_visible": True}),
                         ])
+                    ])
                     ], color="#95a5a6",style={"height": "55rem"},)
                   ],width=2),
                 dbc.Col(children=[
                     html.Iframe(
                         id='topgames',
-                        style={'border-width': '0', 'width': '100%', 'height': '80%'},
+                        style={'border-width': '0', 'width': '100%', 'height': '100%'},
                     ),
                     dcc.Slider(id='ngames', min=1, max=20, value=10, step=1, marks={'1':'1','20':'20'}, tooltip={"placement": "bottom", "always_visible": True}),
-                    dbc.Label("Number of Top Games",style={'font-size':14})
-                ],width=9)
+                    dbc.Label("Number of Top Games",style={'font-size':16})
+                ],width=10)
             ])
         ]
     )
@@ -128,8 +130,8 @@ def topgames(region, years, genre, publisher, platform, ngames):
                 ).configure_mark(
                     color='red'
                 ).properties(
-                    width=600,
-                    height=600
+                    width=550,
+                    height=550
                 )
            )
     return plot.to_html()

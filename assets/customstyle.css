@@ -1,6 +1,9 @@
+.nav-link {
+	color: red;
+}
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: orange;
+    background-color: grey;
 }
 
 

@@ -10,14 +10,14 @@ server = app.server
 app.layout = dbc.Container(children=[
                 dbc.Row(children=[
                     dbc.Col(children=[
-                        html.H1("Video Game Sales: A Historial Analysis", style={"background-color":"#95a5a6","color":"#e4000f",'border': '5px solid #828282','padding':0})
+                        html.H1("Video Game Sales: A Historical Analysis", style={"background-color":"#95a5a6","color":"#e4000f",'border': '5px solid #828282','padding':0})
                     ])
                 ]),
                 dbc.Row(children=[
                     dbc.Col(children=[
                         dbc.Nav(
                             [
-                                dbc.NavItem(dbc.NavLink(page['name'], href=page['path']))
+                                dbc.NavItem(dbc.NavLink(page['name'], href=page['path'],active="exact"))
                                 for page in dash.page_registry.values()
                             ],
                             pills=True

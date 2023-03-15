@@ -4,16 +4,16 @@
 	- implement the feature that changes the scatter based on map clicks
 
 - distributions
-	- snap menu to the left
-	- update header easthetics
+	- snap menu to the left (not sure if this can be done, TA said don't worry about it)
+	- update header easthetics (done)
 	- remove or correct title (done)
-	- update categories to grouped values (talk abt this)
+	- update categories to grouped values (talk abt this) (maybe done?)
 	- increase plot size (done)
 	- increase font size (done)
 
 - top games
-	- snap menu to the left
-	- update header easthetics
+	- snap menu to the left (not sure if this can be done, TA said don't worry about it)
+	- update header easthetics (done)
 	- remove y title (done)
 	- increase plot size (done)
 	- sort top game on top instead of bottom (done)
@@ -25,4 +25,5 @@
 	- move log check closer to plot (done)
 
 - add off white background (talk about this... will need to change all chart backgrounds & text colors to match)
-- update tabs so that active is identified [tried :( ]
+- update tabs so that active is identified (done)
+- speed up plot displays, maybe look into reading file only once and passing to the pages, also maybe drop columns?
