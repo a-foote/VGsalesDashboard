@@ -4,13 +4,13 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc
 
 
-app = dash.Dash(__name__,  external_stylesheets= [dbc.themes.UNITED], suppress_callback_exceptions=True,use_pages = True)
+app = dash.Dash(__name__,  external_stylesheets= [dbc.themes.UNITED], suppress_callback_exceptions=True,use_pages = True, title='Video Game Analysis')
 server = app.server
 
 app.layout = dbc.Container(children=[
                 dbc.Row(children=[
                     dbc.Col(children=[
-                        html.H1("Video Game Sales: A Historical Analysis", style={"background-color":"#95a5a6","color":"#e4000f",'border': '5px solid #828282','padding':0})
+                        html.H1("Video Game Sales: A Historical Analysis", style={"background-color":"#95a5a6","color":"#c9020f",'border': '5px solid #828282','padding':0})
                     ])
                 ]),
                 dbc.Row(children=[
@@ -30,4 +30,4 @@ app.layout = dbc.Container(children=[
 )
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()

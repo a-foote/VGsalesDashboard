@@ -82,14 +82,15 @@ def heatmap(years,xcol,ycol):
         ytitle = 'Publisher'
     else:
         ytitle = ycol
-    plot = (alt.Chart(pg2_data[(pg2_data['Year'] > years[0]) & (pg2_data['Year'] < years[1])],title="").mark_rect().encode(
+    plot = (alt.Chart(pg2_data[(pg2_data['Year'] > years[0]) & (pg2_data['Year'] < years[1]) & (pg2_data['Publisher_grouped'] != 'other')],title="").mark_rect().encode(
                     alt.X(xcol, title = xtitle, axis=alt.Axis(labelAngle=-45)),
                     alt.Y(ycol, title = ytitle),
                     color = alt.Color('count()',title ='Games Count', scale=alt.Scale(scheme='lightgreyred')),
                     tooltip=['count()']
                 ).properties(
                     width=650,
-                    height=650
+                    height=650,
+                    background='#ffffff00'
                 ).configure_axis(
                     labelFontSize=15,
                     titleFontSize=15

@@ -73,6 +73,7 @@ def sales_hist(region, logcheck):
         		width=500,
         		height=400
         	)
+            .properties(background='#ffffff00')
            )
     return plot.to_html()
 @dash.callback(
@@ -110,7 +111,8 @@ def piechart(category):
              		strokeOpacity=0
              	).properties(
              		width=450,
-             		height=450
+             		height=450,
+                    background='#ffffff00'
              	))
 
     return plot.to_html()
