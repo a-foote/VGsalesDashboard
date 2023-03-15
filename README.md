@@ -1,6 +1,7 @@
 # VGsalesDashboard
 A dashboard for video game sales using Dash.
 
+You can find the deployed app [here](https://vg-sales.herokuapp.com/).
 
 ## App Description
 
