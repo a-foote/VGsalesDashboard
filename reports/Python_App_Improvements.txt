@@ -13,7 +13,7 @@
 
 - top games
 	- snap menu to the left (not sure if this can be done, TA said don't worry about it)
-	- update header easthetics
+	- update header easthetics (done)
 	- remove y title (done)
 	- increase plot size (done)
 	- sort top game on top instead of bottom (done)

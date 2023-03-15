@@ -19,7 +19,7 @@ layout = dbc.Container(
         children=[
             dbc.Row([
                 dbc.Col(children=[
-                    dbc.Row([dbc.Label("Region:",style={'font-size':14}),
+                    dbc.Row([dbc.Label("Region:",style={'font-size':16}),
                             dcc.Dropdown(
                                 id='region', value='Global_Sales',
                                 options=[{'label' : "Global", 'value' : "Global_Sales"},
@@ -39,7 +39,7 @@ layout = dbc.Container(
                    )
                   ],width=6),
                 dbc.Col(children=[
-                     dbc.Row([dbc.Label("Category:",style={'font-size':14}),
+                     dbc.Row([dbc.Label("Category:",style={'font-size':16}),
                             dcc.Dropdown(
                                 id='category', value='Genre',
                                 options=[{'label' : "Genre", 'value' : "Genre"},
@@ -49,7 +49,7 @@ layout = dbc.Container(
                     ]),
                     html.Iframe(
                         id='piechart',
-                        style={'border-width': '0', 'width': '100%', 'height': '200%'},
+                        style={'border-width': '0', 'width': '300%', 'height': '350%'},
                     )
                 ],width=6)
             ])
@@ -71,7 +71,7 @@ def sales_hist(region, logcheck):
                 )
             .configure_mark(color='red').properties(
         		width=500,
-        		height=420
+        		height=400
         	)
            )
     return plot.to_html()
