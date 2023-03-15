@@ -71,17 +71,17 @@ layout = dbc.Container(
     ]
 )
 def heatmap(years,xcol,ycol):
-    """
-    Creates the categorical heatmap plot.
-
-            Parameters:
-                    years (array of int): an array of two integers, used to filter data
-                    xcol (string): the categorical variable, as a string, used to create the heatmap
-                    ycol (string): the categorical variable, as a string, used to create the heatmap
-
-            Returns:
-                    plot (altair plot): An HTML formatted Altair heatmap plot
-    """
+    # """
+    # Creates the categorical heatmap plot.
+    #
+    #         Parameters:
+    #                 years (array of int): an array of two integers, used to filter data
+    #                 xcol (string): the categorical variable, as a string, used to create the heatmap
+    #                 ycol (string): the categorical variable, as a string, used to create the heatmap
+    #
+    #         Returns:
+    #                 plot (altair plot): An HTML formatted Altair heatmap plot
+    # """
 
     #switch titles based on category selected (to get rid of '_grouped')
     if xcol == 'Platform_grouped':

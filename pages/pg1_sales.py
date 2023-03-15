@@ -48,15 +48,15 @@ layout = dbc.Container(
     [Input('gs_slider', 'value')]
 )
 def sales_time(years):
-"""
-A function that creates a line plot in Altair.
+#"""
+#A function that creates a line plot in Altair.
 
-    Parameters:
-    years (array of int): an array of two integers, used to filter data
+#    Parameters:
+#    years (array of int): an array of two integers, used to filter data
 
-    Returns:
-    plot (altair plot): An HTML formatted Altair line plot
-"""
+#    Returns:
+#    plot (altair plot): An HTML formatted Altair line plot
+#"""
     plot = (alt.Chart(pg1_data[(pg1_data['Year'] > years[0]) & (pg1_data['Year'] < years[1])], title='Total Regional Sales').mark_line().encode(
                     alt.X('Year',scale=alt.Scale(zero=False), title=None, axis=alt.Axis(format='d')),
                     alt.Y('sum(Global_Sales)', title='Sum of Sales (millions)', axis=alt.Axis(format='$s'))

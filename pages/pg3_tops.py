@@ -116,20 +116,20 @@ layout = dbc.Container(
     ]
 )
 def topgames(region, years, genre, publisher, platform, ngames):
-    """
-    Creates the topgames bar plot.
-
-            Parameters:
-                    region (string): the region, as a string, used to filter data
-                    years (array of int): an array of two integers, used to filter data
-                    genre (string): the genre, as a string, used to filter data
-                    publisher (string): the publisher (grouped), as a string, used to filter data
-                    platform (string): the platform (grouped), as a string, used to filter data
-                    ngames (int): the number of games, as an integer, used to show a certain number of games
-
-            Returns:
-                    plot (altair plot): An HTML formatted Altair barplot
-    """
+    # """
+    # Creates the topgames bar plot.
+    #
+    #         Parameters:
+    #                 region (string): the region, as a string, used to filter data
+    #                 years (array of int): an array of two integers, used to filter data
+    #                 genre (string): the genre, as a string, used to filter data
+    #                 publisher (string): the publisher (grouped), as a string, used to filter data
+    #                 platform (string): the platform (grouped), as a string, used to filter data
+    #                 ngames (int): the number of games, as an integer, used to show a certain number of games
+    #
+    #         Returns:
+    #                 plot (altair plot): An HTML formatted Altair barplot
+    # """
 
     #filter data
     df_temp = pg3_data[(pg3_data['Year'] > years[0]) & (pg3_data['Year'] < years[1])] #filter on year

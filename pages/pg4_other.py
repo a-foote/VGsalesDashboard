@@ -66,16 +66,16 @@ layout = dbc.Container(
     ]
 )
 def sales_hist(region, logcheck):
-    """
-    Creates the sales histogram plot.
-
-            Parameters:
-                    region (string): the region, as a string, used to filter data
-                    logcheck (boolean): a boolean value, decides whether or not to log the y-axis
-
-            Returns:
-                    plot (altair plot): An HTML formatted Altair histogram plot
-    """
+    # """
+    # Creates the sales histogram plot.
+    #
+    #         Parameters:
+    #                 region (string): the region, as a string, used to filter data
+    #                 logcheck (boolean): a boolean value, decides whether or not to log the y-axis
+    #
+    #         Returns:
+    #                 plot (altair plot): An HTML formatted Altair histogram plot
+    # """
     plot = (alt.Chart(pg4_data).mark_bar().encode(
                     alt.X(region, bin=alt.Bin(extent=[0, 3], step=0.2), title = 'Sales (millions)', axis=alt.Axis(format='$s')),
                     alt.Y('count()', scale=alt.Scale(type="log" if len(logcheck) != 0 else "linear"), title = 'Number of Games'),
@@ -93,15 +93,15 @@ def sales_hist(region, logcheck):
     [Input('category', 'value')]
 )
 def piechart(category):
-    """
-    Creates the categorical pie plot.
-
-            Parameters:
-                    category (string): the category, as a string, that you want to see the breakdown of
-
-            Returns:
-                    plot (altair plot): An HTML formatted Altair pie plot
-    """
+    # """
+    # Creates the categorical pie plot.
+    #
+    #         Parameters:
+    #                 category (string): the category, as a string, that you want to see the breakdown of
+    #
+    #         Returns:
+    #                 plot (altair plot): An HTML formatted Altair pie plot
+    # """
     # plot = (alt.Chart(pg4_data).mark_arc().encode(
     #                 theta=alt.Theta(
     #                     field=category,
