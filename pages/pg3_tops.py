@@ -1,6 +1,7 @@
 import dash
 import dash_bootstrap_components as dbc
 #from dash import html, dcc
+#need to import html and dcc this older way for heroku to function
 import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output
@@ -9,9 +10,10 @@ import pandas as pd
 
 dash.register_page(__name__,name="Top Games")
 
-pg3_data = pd.read_csv("data/vgsales-cleaned.csv", parse_dates=['Year'])
-pg3_data['Year'] = pg3_data['Year'].dt.year.astype('Int64')
+pg3_data = pd.read_csv("data/vgsales-cleaned.csv", parse_dates=['Year']) #read in data
+pg3_data['Year'] = pg3_data['Year'].dt.year.astype('Int64') #parse dates properly
 
+#define layout
 layout = dbc.Container(
         children=[
             dbc.Row([
@@ -90,7 +92,7 @@ layout = dbc.Container(
                     ])
                     ], color="#95a5a6",style={"height": "55rem"},)
                   ],width=2),
-                dbc.Col(children=[
+                dbc.Col(children=[ #plot goes here
                     html.Iframe(
                         id='topgames',
                         style={'border-width': '0', 'width': '100%', 'height': '100%'},
@@ -102,7 +104,7 @@ layout = dbc.Container(
         ]
     )
 
-    # Set up callbacks/backend
+# Set up callbacks/backend
 @dash.callback(
     Output('topgames', 'srcDoc'),
     [Input('region', 'value'),
@@ -114,14 +116,29 @@ layout = dbc.Container(
     ]
 )
 def topgames(region, years, genre, publisher, platform, ngames):
+    """
+    Creates the topgames bar plot.
+
+            Parameters:
+                    region (string): the region, as a string, used to filter data
+                    years (array of int): an array of two integers, used to filter data
+                    genre (string): the genre, as a string, used to filter data
+                    publisher (string): the publisher (grouped), as a string, used to filter data
+                    platform (string): the platform (grouped), as a string, used to filter data
+                    ngames (int): the number of games, as an integer, used to show a certain number of games
+
+            Returns:
+                    plot (altair plot): An HTML formatted Altair barplot
+    """
+
     #filter data
-    df_temp = pg3_data[(pg3_data['Year'] > years[0]) & (pg3_data['Year'] < years[1])]
+    df_temp = pg3_data[(pg3_data['Year'] > years[0]) & (pg3_data['Year'] < years[1])] #filter on year
     if genre != 'All':
-        df_temp = df_temp[df_temp['Genre'] == genre]
+        df_temp = df_temp[df_temp['Genre'] == genre] #filter on genre
     if publisher != 'All':
-        df_temp = df_temp[df_temp['Publisher_grouped'] == publisher]
+        df_temp = df_temp[df_temp['Publisher_grouped'] == publisher] #filter on publisher
     if platform != 'All':
-        df_temp = df_temp[df_temp['Platform_grouped'] == platform]
+        df_temp = df_temp[df_temp['Platform_grouped'] == platform] #filter on platform
     #generate plot
     plot = (alt.Chart(df_temp[:ngames]).mark_bar().encode(
                     alt.X(region, type='quantitative', title = 'Sales (millions)', axis=alt.Axis(format='$s')),
@@ -132,7 +149,7 @@ def topgames(region, years, genre, publisher, platform, ngames):
                 ).properties(
                     width=550,
                     height=550,
-                    background='#ffffff00'
+                    background='#ffffff00' #clear background
                 )
            )
     return plot.to_html()
