@@ -55,7 +55,8 @@ knitr::opts_knit$set(kable.force.latex = TRUE)
 
 # Motivation
 
-* text
+* Picture this ...
+
 
 
 
