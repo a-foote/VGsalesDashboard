@@ -1,0 +1,13 @@
+#Milestone 4 Reflection
+This is a reflection on the development of the Video Game Sales dashboard, implemented with Dash in Python and Altair.
+
+### Ease of Use
+
+The app is very easy to use. Tabs are laid out clearly and plots follow a logical sequence.
+
+### Feedback Themes
+
+Most feedback was around minor aesthetic issues such choice of font colour, plot size, and active pill background colour.
+
+### Value Feedback
+The most valuable feedback we received was centered around other users viewing this dashboard on different size screens. 
